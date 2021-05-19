@@ -34,7 +34,7 @@ export class authServise{
           if(!valipassword){
             throw new HttpException("password is incorrect",HttpStatus.BAD_REQUEST)
           }   
-          const token=jwt.sign({id:canditate._id},process.env.JWT_SECRET)
+          const token=jwt.sign({id:canditate._id,username:canditate.name},process.env.JWT_SECRET,{expiresIn:"24h"})
           return {user:canditate,token}
         } catch (error) {
             throw new BadRequestException(error.message)

@@ -1,7 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 export type CategoryDocument = Category & Document;
-
+interface Ichild{
+  id:string,
+  title:string
+}
 @Schema()
 export class Category {
   @Prop()
@@ -9,7 +12,7 @@ export class Category {
   @Prop()
   parentId: string;
   @Prop()
-  childrens?: string[] | [];
+  childrens?: Ichild[] | [];
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category);

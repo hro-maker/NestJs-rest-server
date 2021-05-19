@@ -5,13 +5,13 @@ import { authServise } from './auth.servise';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authservise:authServise){}
-    @Post("/register")
-    register(@Body(new ValidationPipe())userdto:Userdto){
-            return this.authservise.register(userdto)
-    }
-    @Post("/login")
-    login(@Body(new ValidationPipe())userdto:Logindto){
-            return this.authservise.login(userdto)
-    }
+  constructor(private authservise: authServise) {}
+  @Post('/register')
+  register(@Body(new ValidationPipe()) userdto: Userdto) {
+    return this.authservise.register(userdto);
+  }
+  @Post('/login')
+  login(@Body(new ValidationPipe()) userdto: Logindto) {
+    return this.authservise.login(userdto);
+  }
 }
