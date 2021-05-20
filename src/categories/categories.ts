@@ -7,17 +7,16 @@ function createCategories(categories, parentId = null) {
   const categoryList = [];
   let category;
   if (parentId == null) {
-    category = categories.filter((cat) => cat.parentId == undefined);
+    category = categories.filter((cat) => cat.parentId == '');
   } else {
     category = categories.filter((cat) => cat.parentId == parentId);
   }
-
   for (const cate of category) {
     categoryList.push({
       _id: cate._id,
-      name: cate.title,
+      title: cate.title,
       parentId: cate.parentId,
-      children: createCategories(categories, cate._id),
+      childrens: createCategories(categories, cate._id),
     });
   }
   return categoryList;
@@ -42,10 +41,12 @@ export class CategoriesServise {
   }
   async getcategories() {
     const category: CategoryDocument[] = await this.CategoryModel.find();
+    console.log('category', category);
     const categoriList = createCategories(category);
+    console.log('categorylistttttttttt', categoriList);
     return categoriList;
   }
   async getcategoryById(_id) {
-    return await await this.CategoryModel.findOne({ _id });
+    return await this.CategoryModel.findOne({ _id });
   }
 }
